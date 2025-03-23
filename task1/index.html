@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html >
+<head>
+  
+  <title>Custom Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="index-page">
+  <div class="container">
+    <header class="header">Welcome to My Custom Designed Page!</header>
+    <div class="content-box">
+      <p>Hi i am Lohitha Lorem ipsum dolor sit amet, consectetur adipiscing 
+        elit. In odio lectus, condimentum et egestas eget, finibus in lacus.
+         Cras at mauris eget quam commodo sagittis at nec nisl. Morbi sed fermentum magna.
+          Nunc feugiat sapien quis tellus mattis, vel varius ante ultrices. Sed interdum finibus 
+          sem in hendrerit. Nam lectus odio, dictum vitae magna sit amet, viverra vestibulum nibh. Proin
+          ultrices, lectus non cursus pharetra, metus magna pretium enim, et viverra nibh est sit amet nulla.
+           Aliquam in euismod dui. Etiam non accumsan purus, consectetur tincidunt eros. Phasellus a arcu nisi.</p>
+    </div>
+    <button id="dashButton">Click here to see the Dashboard</button>
+  </div>
+  <script>
+    alert("welcome to home page")
+    const button = document.getElementById("dashButton");
+    button.onclick = () => {
+        window.location.href = "dashboard.html";
+        alert("redirecting to dashboard")
+    };
+  </script>
+</body>
+</html>

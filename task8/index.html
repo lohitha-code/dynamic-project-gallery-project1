@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Triangle Generator</title>
+</head>
+<body>
+
+    
+    <input type="number" id="numRows" oninput="generateTriangle()" placeholder="Enter a positive number">
+    
+    <div id="triangle"></div>
+
+    <script>
+        function generateTriangle() {
+            let n = document.getElementById("numRows").value;
+            let code = "";
+
+            for (let i = 1; i <= n; i++) {
+                for (let j = 1; j <= i; j++) { 
+                    code += "* ";
+                }
+                code += "<br>";
+            }
+
+            document.getElementById("triangle").innerHTML = code;
+        }
+    </script>
+
+</body>
+</html>
+
+

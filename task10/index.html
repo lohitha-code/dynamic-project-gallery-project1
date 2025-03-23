@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <script>
+        var students = [];
+
+        function addStudent() {
+            const name = document.getElementById("nameid").value;
+            const age = document.getElementById("ageid").value;
+            const course = document.getElementById("courseid").value;
+            const studentId = document.getElementById("studentid").value;
+
+            const student = {
+                name: name,
+                studentId: studentId,
+                age: age,
+                course: course,
+                description: function() {
+                    return "Student name: " + this.name + ". Student ID: " + this.studentId + ", Age: " + this.age + ", Course: " + this.course + ".";
+                }
+            };
+
+            students.push(student);
+
+         
+            document.getElementById("nameid").value = '';
+            document.getElementById("ageid").value = '';
+            document.getElementById("courseid").value = '';
+            document.getElementById("studentid").value = '';
+        }
+
+        function displayStudents() {
+            let allInfo = '';
+            for (let i = 0; i < students.length; i++) {
+                allInfo += '<p>' + students[i].description() + '</p>';
+            }
+            document.getElementById("demo_div").innerHTML = allInfo;
+        }
+    </script>
+</head>
+<body>
+    <h1>Enter Student Information</h1>
+
+    <input id="nameid" placeholder="Enter student name">
+    <input id="ageid" placeholder="Enter student age">
+    <input id="courseid" placeholder="Enter student course">
+    <input type="text" id="studentid" placeholder="Enter student ID">
+
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="displayStudents()">Display Students</button>
+
+    <div id="demo_div"></div>
+</body>
+</html>
+
