@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 200px;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #demo_div p, #demo_div li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+        }
+    </style>
+    <script>
+        let students = [];
+
+        class Student {
+            constructor(name, studentId, age, course) {
+                this.name = name || "N/A";
+                this.studentId = studentId || "N/A";
+                this.age = age || "N/A";
+                this.course = course || "N/A";
+            }
+
+            describe() {
+                return `Student name: ${this.name}. Student ID: ${this.studentId}, Age: ${this.age}, Course: ${this.course}.`;
+            }
+        }
+
+        function addStudent() {
+            const name = document.getElementById("nameid").value;
+            const age = document.getElementById("ageid").value;
+            const course = document.getElementById("courseid").value;
+            const studentId = document.getElementById("studentid").value;
+
+            let newStudent = new Student(name, studentId, age, course);
+            students.push(newStudent);
+            alert("Student added successfully!");
+            clearInputs();
+        }
+
+        function displayStudents() {
+            let allInfo = students.length
+                ? students.map((student, index) => `<li><strong>Record ${index + 1}:</strong> ${student.describe()}</li>`).join('')
+                : "<li>No records found.</li>";
+
+            document.getElementById("demo_div").innerHTML = `<ul>${allInfo}</ul>`;
+        }
+
+        function clearInputs() {
+            document.getElementById("nameid").value = '';
+            document.getElementById("ageid").value = '';
+            document.getElementById("courseid").value = '';
+            document.getElementById("studentid").value = '';
+        }
+
+        function clearDisplay() {
+            document.getElementById("demo_div").innerHTML = '';
+        }
+
+        function searchStudent() {
+            const searchValue = document.getElementById("searchInput").value.toLowerCase();
+            const filteredStudents = students.filter(student => 
+                student.name.toLowerCase().includes(searchValue) ||
+                student.studentId.toLowerCase().includes(searchValue) ||
+                student.course.toLowerCase().includes(searchValue)
+            );
+
+            let searchResults = filteredStudents.length
+                ? filteredStudents.map((student, index) => `<li><strong>Match ${index + 1}:</strong> ${student.describe()}</li>`).join('')
+                : "<li>No matching records found.</li>";
+
+            document.getElementById("demo_div").innerHTML = `<ul>${searchResults}</ul>`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Enter Student Information</h1>
+
+    <input id="nameid" placeholder="Enter student name">
+    <input id="ageid" type="number" placeholder="Enter student age">
+    <input id="courseid" placeholder="Enter student course">
+    <input id="studentid" placeholder="Enter student ID"><br><br>
+
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="clearInputs()">Clear Inputs</button>
+    <button onclick="displayStudents()">Display Students</button>
+    <button onclick="clearDisplay()">Clear Display</button><br><br>
+
+    <input id="searchInput" placeholder="Search by name, ID, or course">
+    <button onclick="searchStudent()">Search</button>
+
+    
+    <div id="demo_div"></div>
+</body>
+</html>
